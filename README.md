@@ -1,22 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Largify Venture Lab
 
-## Getting Started
+**AI-Agent Powered Idea-to-Startup Platform**
 
-First, run the development server:
+Transform ideas into pilot-ready startups in 8-16 weeks through structured execution workflows, autonomous AI agents, and real-time dashboards.
+
+## 📊 Overview
+
+Largify Venture Lab is a digital execution infrastructure for Pakistan's startup ecosystem. It provides:
+
+- **6 Autonomous AI Agents** working 24/7 for validation, evaluation, and monitoring
+- **Real-time Dashboards** for students, mentors, admins, and corporate partners
+- **Structured Workflows** from idea to pilot-ready startup
+- **Scalable Infrastructure** built on Next.js + Supabase
+
+## 🎯 Core Features
+
+### 1. Idea Evaluation Agent
+AI scores ideas on innovation, feasibility, and market potential with instant feedback.
+
+### 2. Market Validation Agent
+Analyzes interviews and surveys to generate market demand scores and pivot recommendations.
+
+### 3. Team Formation Agent
+Detects skill gaps, suggests co-founders, and scores team compatibility.
+
+### 4. Mentor Assistant Agent
+Pre-session summaries, automatic task generation, and team alignment.
+
+### 5. Progress & Risk Monitor
+Daily cohort monitoring with inactivity detection and milestone tracking.
+
+### 6. Corporate Matching Agent
+Matches validated startups with corporate problems and generates pilot scopes.
+
+## 🏗️ Tech Stack
+
+- **Frontend**: Next.js App Router with React Server Components
+- **Backend**: Supabase Postgres with RLS security
+- **Auth**: Supabase Auth with role-based access control
+- **AI**: OpenAI API via server actions
+- **Real-time**: Supabase Realtime subscriptions
+- **Storage**: Supabase Storage for files
+- **Styling**: Tailwind CSS
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- Supabase account
+- OpenAI API key
+
+### Setup
 
 ```bash
+# Install dependencies
+npm install
+
+# Configure environment
+# Create .env.local with:
+# NEXT_PUBLIC_SUPABASE_URL=...
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+# SUPABASE_SERVICE_ROLE_KEY=...
+# OPENAI_API_KEY=...
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Demo Credentials
+
+- **Student**: `student@demo.com` / `password123`
+- **Mentor**: `mentor@demo.com` / `password123`
+- **Admin**: `admin@demo.com` / `password123`
+- **Corporate**: `corporate@demo.com` / `password123`
+
+## 📁 Project Structure
+
+```
+app/                    # Next.js App Router
+├── page.tsx           # Landing page
+├── layout.tsx         # Root layout
+├── auth/              # Authentication pages
+└── dashboard/         # Role-based dashboards
+
+components/           # Reusable UI components
+├── ui/               # UI components library
+└── layout/           # Navigation & footer
+
+lib/
+├── types/            # Database types
+├── supabase/         # Supabase clients & middleware
+├── agents/           # AI agent functions
+├── actions/          # Server actions
+└── utils.ts          # Utilities
+```
+
+## 🤖 AI Agents
+
+Located in `lib/agents/index.ts`:
+
+- `evaluateIdea()` - Score and evaluate submitted ideas
+- `analyzeValidation()` - Market analysis from interviews/surveys
+- `scoreTeamCompatibility()` - Team skill assessment
+- `calculateHealthScore()` - Startup health monitoring
+- `generateMentorBriefing()` - Pre-session summaries
+- `monitorStartupProgress()` - Inactivity detection
+- `matchStartupsToCorporateProblems()` - Corporate matching
+
+## 🔒 Role-Based Access
+
+| Role | Dashboard | Access |
+|------|-----------|--------|
+| Student | Idea submission, team management, startup tracking |
+| Mentor | Assigned startups, session management, briefings |
+| Admin | Cohort analytics, pipeline visualization, reporting |
+| Corporate | Problem posting, startup matching, pilots |
+
+## 💻 Commands
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm start        # Start production server
+npm run typecheck # Type checking
+```
+
+## 📊 Dashboard Features
+
+- **Student**: Track ideas, manage teams, view AI evaluations
+- **Mentor**: Upcoming sessions, AI prep summaries, startup health
+- **Admin**: Cohort stats, pipeline visualization, cohort health
+- **Corporate**: Problem matching, pilot projects, ROI tracking
+
+## 🚀 Deployment
+
+Deploy to Vercel with environment variables. See `.env.local` for required keys.
+
+## 📄 License
+
+MIT License
+
+---
+
+**Largify Venture Lab** - Transform Ideas. Build Startups. Create Impact. 🚀
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
