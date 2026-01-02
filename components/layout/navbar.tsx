@@ -365,7 +365,7 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/auth/register">
+                <Link href="/get-started">
                   <Button size="sm" className="bg-linear-to-r from-lab-primary to-corporate-primary hover:opacity-90 text-white shadow-lg shadow-lab-primary/20 transition-all rounded-xl px-6 h-10 font-bold relative overflow-hidden group">
                     <span className="relative z-10 flex items-center gap-2">
                       Get Started <Zap className="w-4 h-4 fill-current" />
@@ -652,7 +652,7 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
                       Sign In
                     </Button>
                   </Link>
-                  <Link href="/auth/register" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/get-started" onClick={() => setMobileMenuOpen(false)}>
                     <Button className="w-full justify-center h-12 bg-linear-to-r from-lab-primary to-corporate-primary hover:opacity-90 text-white border-none font-bold rounded-xl shadow-lg shadow-lab-primary/20">
                       Get Started
                     </Button>
