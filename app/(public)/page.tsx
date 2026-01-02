@@ -94,12 +94,12 @@ export default function LargifySolutionsPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-lab-primary/20 selection:text-white relative">
-      {/* Global Background Elements */}
+      {/* Optimized Background - reduced motion & blur */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-lab-primary/5 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-corporate-primary/5 rounded-full blur-[120px] animate-pulse delay-1000" />
-        <div className="absolute top-[30%] right-[5%] w-[30%] h-[30%] bg-lab-accent/5 rounded-full blur-[100px] animate-pulse delay-500" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:80px_80px]" />
+        <div className="absolute top-[-20%] left-[-20%] w-[40%] h-[40%] bg-lab-primary/5 rounded-full blur-[80px]" />
+        <div className="absolute bottom-[-20%] right-[-20%] w-[40%] h-[40%] bg-corporate-primary/5 rounded-full blur-[80px]" />
+        <div className="absolute top-[30%] right-[5%] w-[30%] h-[30%] bg-lab-accent/5 rounded-full blur-[60px]" />
       </div>
 
       <div className="relative z-10">

@@ -71,29 +71,13 @@ export default function CloudInfrastructurePage() {
 
   return (
     <div className="min-h-screen bg-slate-950 pt-24 relative overflow-hidden">
-      {/* Global Background Elements */}
+      {/* Optimized Background - reduced motion & blur */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute top-0 left-0 right-0 h-[500px] bg-linear-to-b from-sky-500/10 via-transparent to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-[500px] bg-linear-to-t from-blue-900/10 via-transparent to-transparent"></div>
-        
-        {/* Animated Pulses */}
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1] 
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-500/20 rounded-full blur-[128px]"
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.1, 0.15, 0.1] 
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[128px]"
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+        <div className="absolute top-0 left-0 right-0 h-[300px] bg-linear-to-b from-sky-500/5 via-transparent to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-[300px] bg-linear-to-t from-blue-900/5 via-transparent to-transparent"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900/10 rounded-full blur-[80px]" />
       </div>
 
       <div className="relative z-10">

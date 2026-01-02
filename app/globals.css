@@ -32,10 +32,14 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
   body {
     @apply bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 antialiased;
+    /* Disable GPU animations by default */
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   ::selection {
     @apply bg-corporate-primary/10 text-corporate-primary;
