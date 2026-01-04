@@ -97,10 +97,10 @@ export default function CloudInfrastructurePage() {
                 <Badge className="mb-4 bg-sky-500/10 text-sky-400 border-sky-500/20">
                   Cloud Solutions
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Cloud Infrastructure
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Scalable, secure, and efficient cloud solutions for your growing business. 
                   We help you leverage the full power of the cloud to drive innovation and reduce costs.
                 </p>

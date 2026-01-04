@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Menu, X, LogOut, User, Settings } from "lucide-react";
+import { Menu, X, LogOut, User, Settings, Coins, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/hooks/useAuth";
 
@@ -15,6 +15,7 @@ export function AuthNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [currentCoins] = useState(450); // Mock current coin balance - in production, fetch from user data
 
   useEffect(() => {
     setMounted(true);
@@ -80,16 +81,36 @@ export function AuthNavbar() {
             {isLoading ? (
               <div className="w-8 h-8 border-2 border-[#a3e635]/20 border-t-[#a3e635] rounded-full animate-spin"></div>
             ) : isAuthenticated && user ? (
-              <div className="relative">
-                <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#a3e635]/10 transition-colors"
-                >
-                  <div className="w-8 h-8 rounded-full bg-[#a3e635]/20 flex items-center justify-center">
-                    <User className="w-4 h-4 text-[#a3e635]" />
-                  </div>
-                  <span className="text-sm text-slate-300 hidden sm:block">{user.name}</span>
-                </button>
+              <>
+                {/* Coin Balance Display */}
+                {user.role === 'student' && (
+                  <Link href="/student/coins">
+                    <div className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all cursor-pointer ${
+                      currentCoins === 0 
+                        ? 'bg-red-500/20 border border-red-500/50 hover:bg-red-500/30' 
+                        : 'bg-[#a3e635]/20 border border-[#a3e635]/50 hover:bg-[#a3e635]/30'
+                    }`}>
+                      <Coins className={`w-4 h-4 ${currentCoins === 0 ? 'text-red-400' : 'text-[#a3e635]'}`} />
+                      <span className={`text-sm font-bold ${currentCoins === 0 ? 'text-red-400' : 'text-[#a3e635]'}`}>
+                        {currentCoins}
+                      </span>
+                      {currentCoins === 0 && (
+                        <AlertCircle className="w-3 h-3 text-red-400 animate-pulse" />
+                      )}
+                    </div>
+                  </Link>
+                )}
+                
+                <div className="relative">
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#a3e635]/10 transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-[#a3e635]/20 flex items-center justify-center">
+                      <User className="w-4 h-4 text-[#a3e635]" />
+                    </div>
+                    <span className="text-sm text-slate-300 hidden sm:block">{user.name}</span>
+                  </button>
 
                 {/* User Dropdown Menu */}
                 {showUserMenu && (
@@ -124,7 +145,8 @@ export function AuthNavbar() {
                     </div>
                   </div>
                 )}
-              </div>
+                </div>
+              </>
             ) : (
               <>
                 <Link href="/auth/login" className="hidden sm:block">

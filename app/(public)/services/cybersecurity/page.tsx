@@ -95,10 +95,10 @@ export default function CybersecurityServicePage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Security & Protection
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Cybersecurity Services
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Keep your business secure with our cybersecurity services. From vulnerability assessments to penetration testing, 
                   we help protect your systems, networks, and data from evolving online threats.
                 </p>

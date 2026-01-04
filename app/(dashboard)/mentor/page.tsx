@@ -53,8 +53,8 @@ export default function MentorDashboard() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Welcome, {currentUser?.name}</h1>
-          <p className="text-slate-400">Manage your mentorship and impact startups</p>
+          <h1 className="text-4xl font-bold mb-2 heading-gradient">Welcome, {currentUser?.name}</h1>
+          <p className="text-white/80">Manage your mentorship and impact startups</p>
         </div>
 
         {/* Stats Grid */}

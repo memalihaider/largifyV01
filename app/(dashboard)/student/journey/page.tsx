@@ -95,8 +95,8 @@ export default function JourneyPage() {
           Back to Dashboard
         </Button>
         
-        <h1 className="text-3xl font-bold text-white mb-2">Your Journey</h1>
-        <p className="text-slate-400 text-lg">
+        <h1 className="text-3xl font-bold mb-2 heading-gradient">Your Journey</h1>
+        <p className="text-white/80 text-lg">
           Complete each step to master entrepreneurship and earn industry certifications.
         </p>
       </div>

@@ -67,10 +67,10 @@ export default function EROServicePage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Enterprise Solutions
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   ERO System
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Enterprise Resource Optimization (ERO) is our flagship service that transforms how businesses operate. 
                   We don't just digitize; we optimize every process for maximum efficiency and data-driven decision making.
                 </p>

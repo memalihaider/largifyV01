@@ -114,8 +114,8 @@ export default function StudentOnboarding() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-white mb-2">Welcome to Largify Lab</h1>
-          <p className="text-slate-400 text-lg">Complete your enrollment to get started</p>
+          <h1 className="text-4xl font-bold mb-2 heading-gradient">Welcome to Largify Lab</h1>
+          <p className="text-white/80 text-lg">Complete your enrollment to get started</p>
         </motion.div>
 
         {/* Progress Indicator */}

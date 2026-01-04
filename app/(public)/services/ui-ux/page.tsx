@@ -97,10 +97,10 @@ export default function UiUxDesignPage() {
                 <Badge className="mb-4 bg-pink-500/10 text-pink-400 border-pink-500/20">
                   Design Excellence
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   UI/UX Design
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Create intuitive and engaging user experiences that drive conversion. 
                   We design interfaces that users love to use, blending aesthetics with functionality.
                 </p>

@@ -108,8 +108,8 @@ export default function DomainSelection() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-white mb-4">Choose Your Domain</h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold mb-4 heading-gradient">Choose Your Domain</h1>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
             Select the field you want to master. You can explore different domains anytime, but let's start with your primary focus.
           </p>
         </motion.div>

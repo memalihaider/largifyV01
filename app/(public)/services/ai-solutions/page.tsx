@@ -95,10 +95,10 @@ export default function AISolutionsPage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Artificial Intelligence
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   AI Solutions
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Harness the power of Artificial Intelligence to automate tasks, analyze data, and make informed business decisions. 
                   Our AI solutions improve efficiency, productivity, and overall growth potential.
                 </p>

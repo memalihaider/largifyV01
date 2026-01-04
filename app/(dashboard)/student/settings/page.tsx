@@ -105,8 +105,8 @@ export default function SettingsPage() {
             <Settings className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold">Settings</h1>
-            <p className="text-slate-400">Manage your account and preferences</p>
+            <h1 className="text-4xl font-bold heading-gradient">Settings</h1>
+            <p className="text-white/80">Manage your account and preferences</p>
           </div>
         </div>
       </motion.div>

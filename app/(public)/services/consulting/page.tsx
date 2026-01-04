@@ -126,10 +126,10 @@ export default function ConsultingServicePage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Strategic Advisory
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Innovation Consulting
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Navigate digital transformation with strategic guidance. We help enterprises innovate, 
                   adapt, and lead in their industries through expert technology consulting.
                 </p>

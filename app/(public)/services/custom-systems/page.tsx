@@ -126,10 +126,10 @@ export default function CustomSystemsPage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Enterprise Systems
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Custom ERP, CRM, & POS
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   We design and implement custom ERP, CRM, and POS systems tailored to your business needs. 
                   Our solutions help streamline operations, manage customer data, and optimize transactions for growth.
                 </p>

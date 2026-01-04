@@ -17,8 +17,11 @@ import {
   Clock,
   Award,
   ChevronRight,
-  Info
+  Info,
+  Coins
 } from 'lucide-react'
+import { COIN_COSTS } from '@/lib/coin-costs'
+import { InsufficientCoinsModal } from '@/components/ui/insufficient-coins-modal'
 
 const domains = [
   {
@@ -104,6 +107,12 @@ const domains = [
 export default function CTFHomePage() {
   const router = useRouter()
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all')
+  const [currentCoins] = useState(450) // Mock coin balance
+  const [insufficientCoinsModal, setInsufficientCoinsModal] = useState({
+    isOpen: false,
+    requiredCoins: 0,
+    featureName: ''
+  })
 
   // Mock user stats
   const userStats = {
@@ -112,6 +121,20 @@ export default function CTFHomePage() {
     points: 1450,
     streak: 5
   }
+
+  const handleDomainClick = (domainName: string) => {
+    // CTF rounds cost coins
+    const cost = COIN_COSTS.ctf.ctfRound;
+    if (currentCoins < cost) {
+      setInsufficientCoinsModal({
+        isOpen: true,
+        requiredCoins: cost,
+        featureName: `${domainName} CTF Round`
+      });
+      return;
+    }
+    router.push(`/student/ctf/${domainName.toLowerCase()}`);
+  };
 
   return (
     <div className="min-h-screen bg-[#0b1120] text-white p-8">
@@ -126,8 +149,8 @@ export default function CTFHomePage() {
             <Trophy className="w-8 h-8" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold">Largify CTF</h1>
-            <p className="text-slate-400">Challenge The Field - Universal Skill Validation Engine</p>
+            <h1 className="text-4xl font-bold heading-gradient">Largify CTF</h1>
+            <p className="text-white/80">Challenge The Field - Universal Skill Validation Engine</p>
           </div>
         </div>
       </motion.div>
@@ -270,7 +293,7 @@ export default function CTFHomePage() {
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+                <div className="flex items-center justify-between pt-4 border-t border-slate-800 mb-4">
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-1">
                       <Target className="w-4 h-4 text-slate-500" />
@@ -284,6 +307,27 @@ export default function CTFHomePage() {
                   <span className={`px-2 py-1 text-xs rounded ${domain.bgColor} border ${domain.borderColor}`}>
                     {domain.difficulty}
                   </span>
+                </div>
+
+                {/* Coin Cost */}
+                <div className="flex items-center justify-between p-3 bg-slate-800/30 rounded-lg border border-slate-700/50">
+                  <div className="flex items-center gap-2">
+                    <Coins className="w-4 h-4 text-amber-400" />
+                    <span className="text-sm font-semibold text-amber-400">{COIN_COSTS.ctf.ctfRound} coins</span>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDomainClick(domain.name);
+                    }}
+                    className={`text-xs px-3 py-1 rounded font-medium transition-colors ${
+                      currentCoins >= COIN_COSTS.ctf.ctfRound
+                        ? 'bg-violet-500 hover:bg-violet-600 text-white'
+                        : 'bg-red-500/20 text-red-400 cursor-not-allowed'
+                    }`}
+                  >
+                    {currentCoins >= COIN_COSTS.ctf.ctfRound ? 'Enter' : 'Low Coins'}
+                  </button>
                 </div>
               </motion.div>
             )
@@ -328,6 +372,16 @@ export default function CTFHomePage() {
           </div>
         </div>
       </motion.div>
+
+      {/* Insufficient Coins Modal */}
+      <InsufficientCoinsModal
+        isOpen={insufficientCoinsModal.isOpen}
+        onClose={() => setInsufficientCoinsModal({ ...insufficientCoinsModal, isOpen: false })}
+        requiredCoins={insufficientCoinsModal.requiredCoins}
+        currentCoins={currentCoins}
+        featureName={insufficientCoinsModal.featureName}
+        coinsShortage={Math.max(0, insufficientCoinsModal.requiredCoins - currentCoins)}
+      />
     </div>
   )
 }

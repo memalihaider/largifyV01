@@ -6,8 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, Check } from 'lucide-react';
+import { ArrowRight, ChevronLeft, Check, Coins, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { COIN_COSTS } from '@/lib/coin-costs';
+import { InsufficientCoinsModal } from '@/components/ui/insufficient-coins-modal';
 
 const assessmentQuestions = [
   {
@@ -78,6 +80,13 @@ export default function SkillAssessment() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [currentCoins] = useState(450); // Mock current coin balance
+  const [insufficientCoinsModal, setInsufficientCoinsModal] = useState({
+    isOpen: false,
+    requiredCoins: 0,
+    featureName: ''
+  });
+  const assessmentCost = COIN_COSTS.assessments.skillAssessment;
 
   const handleSelectAnswer = (score: number) => {
     setAnswers(prev => ({
@@ -100,6 +109,17 @@ export default function SkillAssessment() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if user has enough coins
+    if (currentCoins < assessmentCost) {
+      setInsufficientCoinsModal({
+        isOpen: true,
+        requiredCoins: assessmentCost,
+        featureName: 'Skill Assessment'
+      });
+      return;
+    }
+
     setLoading(true);
     setSubmitted(true);
 
@@ -176,8 +196,8 @@ export default function SkillAssessment() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-white mb-2">Skill Assessment</h1>
-          <p className="text-slate-400 text-lg">
+          <h1 className="text-4xl font-bold mb-2 heading-gradient">Skill Assessment</h1>
+          <p className="text-white/80 text-lg">
             Help us understand your skill level to personalize your learning path
           </p>
         </motion.div>
@@ -282,10 +302,15 @@ export default function SkillAssessment() {
                 ) : (
                   <Button
                     type="submit"
-                    disabled={!allAnswered || loading}
-                    className="flex-1 bg-[#a3e635] hover:bg-[#8ecc2a] text-black font-semibold"
+                    disabled={!allAnswered || loading || currentCoins < assessmentCost}
+                    className={cn(
+                      "flex-1 font-semibold",
+                      currentCoins < assessmentCost
+                        ? "bg-slate-700 hover:bg-slate-600 text-slate-400 cursor-not-allowed"
+                        : "bg-[#a3e635] hover:bg-[#8ecc2a] text-black"
+                    )}
                   >
-                    {loading ? 'Submitting...' : 'Submit Assessment'}
+                    {loading ? 'Submitting...' : currentCoins < assessmentCost ? 'Insufficient Coins' : 'Submit Assessment'}
                     <Check className="w-4 h-4 ml-2" />
                   </Button>
                 )}
@@ -320,7 +345,34 @@ export default function SkillAssessment() {
         >
           💡 Your answers help us customize your learning experience. There are no right or wrong answers.
         </motion.p>
+
+        {/* Cost Info */}
+        <div className="mt-8 text-center">
+          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
+            currentCoins < assessmentCost 
+              ? 'bg-red-500/20 border border-red-500/50' 
+              : 'bg-[#a3e635]/20 border border-[#a3e635]/50'
+          }`}>
+            <Coins className={`w-4 h-4 ${currentCoins < assessmentCost ? 'text-red-400' : 'text-[#a3e635]'}`} />
+            <span className={`text-sm font-semibold ${currentCoins < assessmentCost ? 'text-red-400' : 'text-[#a3e635]'}`}>
+              {assessmentCost} coins required
+            </span>
+            {currentCoins < assessmentCost && (
+              <AlertCircle className="w-3 h-3 text-red-400" />
+            )}
+          </div>
+        </div>
       </div>
+
+      {/* Insufficient Coins Modal */}
+      <InsufficientCoinsModal
+        isOpen={insufficientCoinsModal.isOpen}
+        onClose={() => setInsufficientCoinsModal({ ...insufficientCoinsModal, isOpen: false })}
+        requiredCoins={insufficientCoinsModal.requiredCoins}
+        currentCoins={currentCoins}
+        featureName={insufficientCoinsModal.featureName}
+        coinsShortage={insufficientCoinsModal.requiredCoins - currentCoins}
+      />
     </div>
   );
 }

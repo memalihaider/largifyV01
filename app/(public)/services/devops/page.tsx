@@ -97,10 +97,10 @@ export default function DevOpsPage() {
                 <Badge className="mb-4 bg-cyan-500/10 text-cyan-400 border-cyan-500/20">
                   DevOps Engineering
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   DevOps Services
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Bridge the gap between development and operations. We help you ship code faster, 
                   more reliably, and with higher quality through automation and best practices.
                 </p>

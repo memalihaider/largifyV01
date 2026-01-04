@@ -180,10 +180,10 @@ export default function EnterprisePlatformPage() {
                 <span className="text-sm text-violet-400 font-medium">For Enterprises</span>
               </div>
               
-              <h1 className="text-5xl font-bold mb-4 leading-tight">
+              <h1 className="text-5xl font-bold mb-4 leading-tight heading-gradient">
                 Upskill Your Innovation Team
               </h1>
-              <p className="text-xl text-slate-300 mb-6 leading-relaxed">
+              <p className="text-xl text-white/80 mb-6 leading-relaxed">
                 Challenge-based learning that builds capability under pressure, not content consumption.
               </p>
               

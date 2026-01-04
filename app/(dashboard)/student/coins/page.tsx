@@ -125,8 +125,8 @@ export default function CoinsPage() {
                 <Coins className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold">Largify Coins</h1>
-                <p className="text-slate-400">Unlock premium lessons and challenges</p>
+                <h1 className="text-4xl font-bold heading-gradient">Largify Coins</h1>
+                <p className="text-white/80">Unlock premium lessons and challenges</p>
               </div>
             </div>
           </div>

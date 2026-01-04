@@ -17,25 +17,9 @@ import {
   Bot, 
   BookOpen,
   ArrowRight,
-  Building2,
-  Shield,
-  Code,
-  Lightbulb,
-  Globe,
-  Brain,
-  Smartphone,
-  TrendingUp,
   Search,
-  LayoutGrid,
-  Lock,
-  Rocket,
-  Command,
   Zap,
-  Palette,
-  Cloud,
-  BarChart,
-  Blocks,
-  Cpu
+  Rocket
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -43,13 +27,6 @@ import { cn } from "@/lib/utils";
 interface NavbarProps {
   isLoggedIn?: boolean;
   userRole?: string;
-}
-
-interface ServiceItem {
-  title: string;
-  description: string;
-  icon: ReactElement;
-  href: string;
 }
 
 interface ProductItem {
@@ -63,7 +40,6 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -87,85 +63,9 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { href: "/how-it-works", label: "Solutions" },
-    { href: "/pricing", label: "Innovation Lab" },
+    { href: "/auth/login", label: "Innovation Lab" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-  ];
-
-  const services: ServiceItem[] = [
-    {
-      title: "Web Development",
-      description: "Build responsive, fast-loading websites that work seamlessly across all devices.",
-      icon: <Globe className="w-6 h-6 text-blue-600" />,
-      href: "/services/web-development"
-    },
-    {
-      title: "AI Solutions",
-      description: "Harness the power of AI to automate tasks and analyze data for business growth.",
-      icon: <Brain className="w-6 h-6 text-violet-600" />,
-      href: "/services/ai-solutions"
-    },
-    {
-      title: "Mobile App Development",
-      description: "Develop intuitive and high-performance apps for iOS and Android platforms.",
-      icon: <Smartphone className="w-6 h-6 text-emerald-600" />,
-      href: "/services/mobile-development"
-    },
-    {
-      title: "Cybersecurity Services",
-      description: "Protect your systems, networks, and data from evolving online threats.",
-      icon: <Shield className="w-6 h-6 text-red-600" />,
-      href: "/services/cybersecurity"
-    },
-    {
-      title: "Custom ERP, CRM, & POS",
-      description: "Tailored systems to streamline operations and optimize transactions.",
-      icon: <LayoutGrid className="w-6 h-6 text-indigo-600" />,
-      href: "/services/custom-systems"
-    },
-    {
-      title: "Digital Marketing & SEO",
-      description: "Boost your online visibility and attract more customers with expert strategies.",
-      icon: <TrendingUp className="w-6 h-6 text-amber-600" />,
-      href: "/services/marketing-seo"
-    },
-    {
-      title: "UI/UX Design",
-      description: "Create intuitive and engaging user experiences that drive conversion.",
-      icon: <Palette className="w-6 h-6 text-pink-600" />,
-      href: "/services/ui-ux"
-    },
-    {
-      title: "Cloud Infrastructure",
-      description: "Scalable and secure cloud solutions for your growing business needs.",
-      icon: <Cloud className="w-6 h-6 text-sky-500" />,
-      href: "/services/cloud"
-    },
-    {
-      title: "Data Analytics",
-      description: "Transform raw data into actionable insights for better decision making.",
-      icon: <BarChart className="w-6 h-6 text-teal-500" />,
-      href: "/services/data-analytics"
-    },
-    {
-      title: "Blockchain",
-      description: "Secure, transparent, and decentralized solutions for modern problems.",
-      icon: <Blocks className="w-6 h-6 text-orange-500" />,
-      href: "/services/blockchain"
-    },
-    {
-      title: "DevOps Services",
-      description: "Streamline development and operations for faster delivery cycles.",
-      icon: <Cpu className="w-6 h-6 text-cyan-600" />,
-      href: "/services/devops"
-    },
-    {
-      title: "IT Consulting",
-      description: "Strategic technology guidance to help you achieve your business goals.",
-      icon: <Lightbulb className="w-6 h-6 text-yellow-500" />,
-      href: "/services/consulting"
-    }
   ];
 
   const products: ProductItem[] = [
@@ -223,38 +123,35 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
   return (
     <>
       {/* Backdrop for closing dropdowns */}
-      {(isServicesOpen || isProductsOpen) && (
+      {isProductsOpen && (
         <div 
           className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[1px]"
           onClick={() => {
-            setIsServicesOpen(false);
             setIsProductsOpen(false);
           }}
         />
       )}
       
     <motion.nav 
+      suppressHydrationWarning
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-4 py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-4 py-4",
         scrolled ? "py-2" : "py-4"
       )}
     >
       <div className={cn(
-        "container mx-auto transition-all duration-500",
+        "container mx-auto transition-all duration-300",
         scrolled ? "max-w-6xl" : "max-w-7xl"
       )}>
         <div className={cn(
-          "relative flex items-center justify-between h-14 sm:h-16 px-4 rounded-2xl border transition-all duration-500 overflow-hidden",
+          "relative flex items-center justify-between h-14 sm:h-16 px-4 rounded-2xl border transition-all duration-300 overflow-hidden",
           scrolled 
-            ? "bg-slate-950/80 backdrop-blur-xl border-slate-800/50 shadow-2xl shadow-black/50" 
-            : "bg-slate-950/40 backdrop-blur-md border-white/5"
-        )}>
-          {/* Ambient Glow Effect */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-full bg-white/5 blur-3xl -z-10 pointer-events-none" />
-          
+            ? "bg-slate-950/90 border-slate-800/50 shadow-xl" 
+            : "bg-slate-950/60 border-white/5"
+        )} suppressHydrationWarning>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group z-50">
             <div className="relative w-10 h-10 overflow-hidden rounded-xl border border-white/10 shadow-lg shadow-lab-primary/20">
@@ -269,37 +166,30 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 bg-white/5 p-1.5 rounded-xl border border-white/5 backdrop-blur-sm z-50">
+          <div className="hidden md:flex items-center gap-1 bg-white/5 p-1.5 rounded-xl border border-white/5 backdrop-blur-sm z-50" suppressHydrationWarning>
             <div className="relative">
-              <button 
-                onClick={() => {
-                  setIsServicesOpen(!isServicesOpen);
-                  setIsProductsOpen(false);
-                }}
+              <Link
+                href="/pricing"
                 className={cn(
-                  "flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-all cursor-pointer relative overflow-hidden",
-                  isServicesOpen ? "text-white" : "text-slate-400 hover:text-white"
+                  "flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-all relative overflow-hidden",
+                  pathname === "/pricing" ? "text-white" : "text-slate-400 hover:text-white"
                 )}
               >
-                {isServicesOpen && (
+                {pathname === "/pricing" && (
                   <motion.div
                     layoutId="nav-pill"
                     className="absolute inset-0 bg-white/10 rounded-lg"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-1.5">
-                  Services
-                  <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-300", isServicesOpen && "rotate-180")} />
-                </span>
-              </button>
+                <span className="relative z-10">Pricing</span>
+              </Link>
             </div>
 
             <div className="relative">
               <button 
                 onClick={() => {
                   setIsProductsOpen(!isProductsOpen);
-                  setIsServicesOpen(false);
                 }}
                 className={cn(
                   "flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-all cursor-pointer relative overflow-hidden",
@@ -328,7 +218,7 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
                   href={link.href}
                   className={cn(
                     "px-4 py-2 rounded-lg text-sm font-bold transition-all relative overflow-hidden",
-                    isActive ? "text-white" : "text-slate-400 hover:text-white"
+                    isActive ? "text-white" : "text-slate-400 hover:text-slate-200"
                   )}
                 >
                   {isActive && (
@@ -345,7 +235,7 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center gap-3 z-50">
+          <div className="flex items-center gap-3 z-50" suppressHydrationWarning>
             <button className="hidden lg:flex items-center justify-center w-10 h-10 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all">
               <Search className="w-5 h-5" />
             </button>
@@ -380,6 +270,7 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
             <button
               className="md:hidden p-2 text-slate-300 hover:text-white transition-colors relative z-50"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              suppressHydrationWarning
             >
               {mobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -390,94 +281,21 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
           </div>
         </div>
       </div>
+    </motion.nav>
 
-      {/* Services Mega Menu Dropdown */}
-      <AnimatePresence>
-        {isServicesOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-0 w-full px-4 pt-2"
-          >
-            <div className="container mx-auto max-w-6xl bg-slate-900/95 backdrop-blur-2xl border border-slate-800 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden max-h-[70vh] overflow-y-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-12">
-                <div className="lg:col-span-4 bg-slate-950/50 p-5 border-r border-slate-800">
-                  <div className="p-2.5 bg-corporate-primary/10 rounded-xl inline-block mb-3">
-                    <Building2 className="w-6 h-6 text-corporate-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Enterprise Services</h3>
-                  <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-                    Professional technology and security services designed for businesses, institutes, and governments.
-                  </p>
-                  <div className="space-y-3">
-                    <Link 
-                      href="/features" 
-                      className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-all group"
-                      onClick={() => setIsServicesOpen(false)}
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-corporate-primary/20 flex items-center justify-center text-corporate-primary group-hover:scale-110 transition-transform">
-                        <Rocket className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-bold text-white">Service Roadmap</p>
-                        <p className="text-[10px] text-slate-500">View our implementation process</p>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-                <div className="lg:col-span-8 p-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {services.map((service, i) => (
-                      <Link 
-                        key={i} 
-                        href={service.href}
-                        className="group p-3 rounded-xl hover:bg-white/5 transition-all flex gap-3 border border-transparent hover:border-slate-800"
-                        onClick={() => setIsServicesOpen(false)}
-                      >
-                        <div className="shrink-0 w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-corporate-primary group-hover:text-white transition-all duration-300">
-                          {React.cloneElement(service.icon as React.ReactElement, { className: "w-5 h-5" } as any)}
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-white group-hover:text-corporate-primary transition-colors mb-0.5">
-                            {service.title}
-                          </h4>
-                          <p className="text-slate-400 text-[11px] leading-relaxed line-clamp-2">
-                            {service.description}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
-                    <p className="text-sm text-slate-500 font-medium">Need a custom solution?</p>
-                    <Link 
-                      href="/contact" 
-                      className="text-sm font-bold text-corporate-primary hover:text-white transition-colors flex items-center gap-2"
-                      onClick={() => setIsServicesOpen(false)}
-                    >
-                      Talk to an expert <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       {/* Products Mega Menu Dropdown */}
       <AnimatePresence>
         {isProductsOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 5 }}
+            transition={{ duration: 0.15 }}
             className="absolute top-full left-0 w-full px-2 pt-2"
           >
-            <div className="container mx-auto max-w-7xl bg-slate-900/95 backdrop-blur-2xl border border-slate-800 rounded-3xl shadow-2xl shadow-black/50 overflow-hidden max-h-[70vh] overflow-y-auto">
+            <div className="container mx-auto max-w-7xl bg-slate-900/98 border border-slate-800 rounded-3xl shadow-xl overflow-hidden max-h-[70vh] overflow-y-auto">
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 <div className="lg:col-span-4 bg-slate-950/50 p-6 border-r border-slate-800">
                   <div className="p-3 bg-lab-primary/10 rounded-2xl inline-block mb-4">
@@ -544,39 +362,6 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
             className="absolute top-0 left-0 w-screen h-screen z-40 bg-slate-950/98 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 overflow-y-auto"
           >
             <div className="flex flex-col gap-8 pb-10">
-              {/* Mobile Services */}
-              <div className="space-y-4">
-                <motion.p 
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] px-2"
-                >
-                  Services
-                </motion.p>
-                <div className="grid grid-cols-1 gap-2">
-                  {services.map((service, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + (i * 0.05) }}
-                    >
-                      <Link
-                        href={service.href}
-                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-all border border-transparent hover:border-slate-800 group"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center text-corporate-primary group-hover:scale-110 transition-transform">
-                          {React.cloneElement(service.icon as ReactElement<any>, { className: "w-5 h-5" })}
-                        </div>
-                        <span className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors">{service.title}</span>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
               {/* Mobile Products */}
               <div className="space-y-4">
                 <motion.p 
@@ -630,7 +415,7 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
                     >
                       <Link
                         href={link.href}
-                        className="block px-4 py-3 text-lg font-bold text-slate-300 hover:text-white transition-colors"
+                        className="block px-4 py-3 text-lg font-bold text-slate-300 hover:text-slate-200 transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {link.label}
@@ -663,7 +448,6 @@ export function Navbar({ isLoggedIn = false, userRole }: NavbarProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
     </>
   );
 }

@@ -181,13 +181,10 @@ export default function SolutionsPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 Our Solutions
               </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-                Tailored Solutions for{' '}
-                <span className="bg-linear-to-r from-corporate-primary to-lab-primary bg-clip-text text-transparent">
-                  Every Sector
-                </span>
+              <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 tracking-tight heading-gradient">
+                Tailored Solutions for Every Sector
               </h1>
-              <p className="text-xl text-slate-400 mb-8">
+              <p className="text-xl text-white/80 mb-8">
                 Whether you're an enterprise seeking digital transformation, an institute building 
                 capability, or a government agency serving citizens - we have solutions designed for you.
               </p>

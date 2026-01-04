@@ -67,10 +67,10 @@ export default function SecurityServicePage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Security & Compliance
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Cybersecurity Services
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Protect your digital assets with enterprise-grade security solutions. 
                   From comprehensive audits to SOC readiness, we ensure your organization is resilient against evolving threats.
                 </p>

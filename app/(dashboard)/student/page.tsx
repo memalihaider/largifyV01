@@ -18,7 +18,8 @@ import {
   Grid,
   HelpCircle,
   User,
-
+  Coins,
+  Gift,
   CheckCircle,
   Circle
 } from 'lucide-react';
@@ -96,7 +97,7 @@ export default function StudentDashboard() {
     <div className="min-h-screen bg-[#0b1120] text-slate-200 font-sans">
       {/* Welcome Section */}
       <div className="mb-12">
-        <h1 className="text-3xl font-bold text-white mb-2">
+        <h1 className="text-3xl font-bold mb-2 heading-gradient">
           Welcome <span className="text-violet-400">{(currentUser?.name || 'innovator').toLowerCase().replace(' ', '')}</span>,
         </h1>
         <p className="text-slate-400 text-lg">
@@ -175,6 +176,8 @@ export default function StudentDashboard() {
       <div className="space-y-4 mb-12">
         {[
           { title: 'Largify CTF', subtitle: 'Challenge your skills across multiple domains', icon: <Trophy className="w-5 h-5" />, link: '/student/ctf' },
+          { title: 'Coin Rewards & Earnings', subtitle: 'Track your coin rewards and daily bonuses', icon: <Gift className="w-5 h-5" />, link: '/student/rewards' },
+          { title: 'Buy Coins', subtitle: 'Purchase more coins for learning content', icon: <Coins className="w-5 h-5" />, link: '/student/coins' },
           { title: 'Largify Enterprise Platform', subtitle: 'Upskill your innovation team with challenge-based learning', icon: <Briefcase className="w-5 h-5" />, link: '/enterprise' }
         ].map((item, i) => (
           <div 

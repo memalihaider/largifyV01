@@ -97,10 +97,10 @@ export default function BlockchainPage() {
                 <Badge className="mb-4 bg-orange-500/10 text-orange-400 border-orange-500/20">
                   Web3 Solutions
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Blockchain Solutions
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Build the future of trust. We deliver secure, transparent, and decentralized 
                   solutions that revolutionize how you do business.
                 </p>

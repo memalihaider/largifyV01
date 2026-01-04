@@ -6,14 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, TrendingUp, Target, BookOpen, Zap, Filter } from 'lucide-react';
+import { ArrowRight, Clock, TrendingUp, Target, BookOpen, Zap, Filter, Coins } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { mockCaseStudies, type CaseStudyLevel } from '@/lib/mock-data/student-portal';
+import { COIN_COSTS } from '@/lib/coin-costs';
+import { InsufficientCoinsModal } from '@/components/ui/insufficient-coins-modal';
 
 function CaseStudiesContent() {
   const [selectedLevel, setSelectedLevel] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
+  const [currentCoins] = useState(450); // Mock current coin balance
+  const [insufficientCoinsModal, setInsufficientCoinsModal] = useState({
+    isOpen: false,
+    requiredCoins: 0,
+    featureName: ''
+  });
+  const router = useRouter();
 
   const domains = Array.from(new Set(mockCaseStudies.map(c => c.domain)));
   const domainLabels: Record<string, string> = {
@@ -29,6 +38,28 @@ function CaseStudiesContent() {
     const domainMatch = selectedDomain === null || c.domain === selectedDomain;
     return levelMatch && domainMatch;
   });
+
+  const getCoinCost = (level: CaseStudyLevel): number => {
+    const costMap: Record<CaseStudyLevel, number> = {
+      beginner: COIN_COSTS.caseStudies.basicCase,
+      intermediate: COIN_COSTS.caseStudies.intermediateCase,
+      advanced: COIN_COSTS.caseStudies.advancedCase
+    };
+    return costMap[level];
+  };
+
+  const handleCaseStudyClick = (caseId: string, level: CaseStudyLevel, title: string) => {
+    const cost = getCoinCost(level);
+    if (currentCoins < cost) {
+      setInsufficientCoinsModal({
+        isOpen: true,
+        requiredCoins: cost,
+        featureName: title
+      });
+      return;
+    }
+    router.push(`/student/case-study/${caseId}`);
+  };
 
   const levelColors: Record<string, { bg: string; color: string; icon: React.ReactNode }> = {
     beginner: { 
@@ -57,8 +88,8 @@ function CaseStudiesContent() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold text-white mb-4">Case Studies</h1>
-          <p className="text-slate-400 text-lg max-w-2xl">
+          <h1 className="text-4xl font-bold mb-4 heading-gradient">Case Studies</h1>
+          <p className="text-white/80 text-lg max-w-2xl">
             Real-world scenarios. Real skills. Real outcomes. Choose a case study to start your learning journey.
           </p>
         </motion.div>
@@ -233,11 +264,32 @@ function CaseStudiesContent() {
                           </div>
                         </div>
 
-                        {/* CTA */}
-                        <Button className="w-full bg-[#a3e635] hover:bg-[#8ecc2a] text-black font-semibold group/btn mt-4">
-                          Start Case Study
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
+                        {/* Coin Cost & CTA */}
+                        <div className="space-y-3 pt-2 border-t border-slate-700/50">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Coins className="w-4 h-4 text-amber-400" />
+                              <span className="text-sm font-semibold text-amber-400">
+                                {getCoinCost(caseStudy.level)} coins
+                              </span>
+                            </div>
+                            <span className={cn(
+                              'text-xs font-semibold px-2 py-1 rounded',
+                              currentCoins >= getCoinCost(caseStudy.level)
+                                ? 'bg-green-500/20 text-green-400'
+                                : 'bg-red-500/20 text-red-400'
+                            )}>
+                              {currentCoins >= getCoinCost(caseStudy.level) ? 'Can Access' : 'Not Enough'}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => handleCaseStudyClick(caseStudy.id, caseStudy.level, caseStudy.title)}
+                            className="w-full bg-[#a3e635] hover:bg-[#8ecc2a] text-black font-semibold py-2.5 rounded-lg flex items-center justify-center gap-2 transition-colors group/btn"
+                          >
+                            Start Case Study
+                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                          </button>
+                        </div>
                       </CardContent>
                     </Card>
                   </Link>
@@ -278,6 +330,16 @@ function CaseStudiesContent() {
             <span className="font-semibold text-white">📚 How Case Studies Work:</span> Each case study progresses through 4 phases: <span className="text-[#a3e635]">Understanding → Analysis → Execution → Business Impact</span>. You advance to the next phase only after passing evaluation. AI mentors guide you with learning resources, hints, and personalized feedback.
           </p>
         </motion.div>
+
+        {/* Insufficient Coins Modal */}
+        <InsufficientCoinsModal
+          isOpen={insufficientCoinsModal.isOpen}
+          onClose={() => setInsufficientCoinsModal({ ...insufficientCoinsModal, isOpen: false })}
+          requiredCoins={insufficientCoinsModal.requiredCoins}
+          currentCoins={currentCoins}
+          featureName={insufficientCoinsModal.featureName}
+          coinsShortage={Math.max(0, insufficientCoinsModal.requiredCoins - currentCoins)}
+        />
       </div>
     </div>
   );

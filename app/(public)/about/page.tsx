@@ -134,14 +134,10 @@ export default function AboutPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 About Us
               </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-                One Company.{' '}
-                <span className="bg-linear-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                  Two Engines.
-                </span>
-                {' '}One Ecosystem.
+              <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 tracking-tight heading-gradient">
+                One Company. Two Engines. One Ecosystem.
               </h1>
-              <p className="text-xl text-slate-400 mb-8">
+              <p className="text-xl text-white/80 mb-8">
                 Largify Solutions is a technology and innovation company that builds enterprise 
                 systems, secures digital assets, and develops the talent that powers modern organizations.
               </p>
@@ -301,10 +297,10 @@ export default function AboutPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 Our Values
               </Badge>
-              <h2 className="text-4xl font-bold text-white mb-4">
+              <h2 className="text-4xl font-extrabold mb-4 heading-gradient">
                 What Drives Us
               </h2>
-              <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              <p className="text-xl text-white/80 max-w-3xl mx-auto">
                 These principles guide every decision we make and every solution we deliver.
               </p>
             </div>
@@ -345,7 +341,7 @@ export default function AboutPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 Our Journey
               </Badge>
-              <h2 className="text-4xl font-bold text-white mb-4">
+              <h2 className="text-4xl font-extrabold mb-4 heading-gradient">
                 Milestones
               </h2>
             </div>

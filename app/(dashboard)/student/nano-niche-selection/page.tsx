@@ -254,8 +254,8 @@ export default function NanoNicheSelection() {
               Back
             </Button>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-4">Specialized Niches in {domainName}</h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold mb-4 heading-gradient">Specialized Niches in {domainName}</h1>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
             Choose a specialized area within {domainName}. Each niche offers unique skills and real-world applications.
           </p>
         </motion.div>

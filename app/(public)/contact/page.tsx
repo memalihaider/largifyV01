@@ -158,13 +158,10 @@ export default function ContactPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 Contact Us
               </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-                Let's Build{' '}
-                <span className="bg-linear-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                  Something Great
-                </span>
+              <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 tracking-tight heading-gradient">
+                Let's Build Something Great
               </h1>
-              <p className="text-xl text-slate-400">
+              <p className="text-xl text-white/80">
                 Whether you're looking for enterprise solutions, security services, or 
                 capability building programs - we're here to help.
               </p>
@@ -216,10 +213,10 @@ export default function ContactPage() {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Inquiry Types */}
               <div>
-                <h2 className="text-3xl font-bold text-white mb-6">
+                <h2 className="text-3xl font-extrabold mb-6 heading-gradient">
                   What Can We Help You With?
                 </h2>
-                <p className="text-slate-400 mb-8">
+                <p className="text-white/80 mb-8">
                   Select the type of inquiry that best describes your needs, and our 
                   specialized team will reach out to assist you.
                 </p>
@@ -385,7 +382,7 @@ export default function ContactPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 FAQ
               </Badge>
-              <h2 className="text-4xl font-bold text-white mb-4">
+              <h2 className="text-4xl font-extrabold mb-4 heading-gradient">
                 Common Questions
               </h2>
             </div>

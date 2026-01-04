@@ -97,10 +97,10 @@ export default function DataAnalyticsPage() {
                 <Badge className="mb-4 bg-teal-500/10 text-teal-400 border-teal-500/20">
                   Data Intelligence
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Data Analytics
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Transform raw data into actionable insights. We help you make smarter, 
                   faster decisions by unlocking the hidden value in your data.
                 </p>

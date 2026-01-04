@@ -164,8 +164,8 @@ export default function SubscriptionPage() {
           <span className="text-violet-400 font-medium">Pakistan-First Pricing</span>
         </div>
 
-        <h1 className="text-5xl font-bold mb-4">Choose Your Learning Path</h1>
-        <p className="text-xl text-slate-400 mb-8">
+        <h1 className="text-5xl font-bold mb-4 heading-gradient">Choose Your Learning Path</h1>
+        <p className="text-xl text-white/80 mb-8">
           Free entry. Paid acceleration. Serious learning.
         </p>
 
@@ -310,6 +310,45 @@ export default function SubscriptionPage() {
             <div className="text-5xl font-bold mb-2">50%+</div>
             <div className="text-slate-400 mb-4">More value than</div>
             <div className="text-sm text-slate-500">buying coins individually</div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Coin Usage Guide */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="mb-12"
+      >
+        <h2 className="text-3xl font-bold mb-6 heading-gradient">What Can You Do With Coins?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-[#111927] border border-slate-800 rounded-xl p-6 hover:border-violet-500/50 transition-all">
+            <div className="text-3xl mb-2">📚</div>
+            <h4 className="font-bold mb-2">Lessons & Courses</h4>
+            <p className="text-sm text-slate-400 mb-3">Access exclusive video lectures, documentation, and comprehensive course materials</p>
+            <div className="text-amber-400 text-sm font-bold">10-300 coins</div>
+          </div>
+          
+          <div className="bg-[#111927] border border-slate-800 rounded-xl p-6 hover:border-cyan-500/50 transition-all">
+            <div className="text-3xl mb-2">💻</div>
+            <h4 className="font-bold mb-2">Labs & Practice</h4>
+            <p className="text-sm text-slate-400 mb-3">Hands-on development environments and practice projects with real-world scenarios</p>
+            <div className="text-cyan-400 text-sm font-bold">20-100 coins</div>
+          </div>
+
+          <div className="bg-[#111927] border border-slate-800 rounded-xl p-6 hover:border-purple-500/50 transition-all">
+            <div className="text-3xl mb-2">⚔️</div>
+            <h4 className="font-bold mb-2">CTF Challenges</h4>
+            <p className="text-sm text-slate-400 mb-3">Challenge The Field - compete in domain-specific challenges to validate skills</p>
+            <div className="text-purple-400 text-sm font-bold">15-200 coins</div>
+          </div>
+
+          <div className="bg-[#111927] border border-slate-800 rounded-xl p-6 hover:border-emerald-500/50 transition-all">
+            <div className="text-3xl mb-2">🎯</div>
+            <h4 className="font-bold mb-2">Case Studies</h4>
+            <p className="text-sm text-slate-400 mb-3">Real-world business scenarios and problem-solving case studies</p>
+            <div className="text-emerald-400 text-sm font-bold">25-100 coins</div>
           </div>
         </div>
       </motion.div>

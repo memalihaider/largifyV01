@@ -95,10 +95,10 @@ export default function MobileDevelopmentPage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Mobile Engineering
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-                  Mobile App Development
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
+                  Mobile Development
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Develop intuitive and high-performance apps for iOS and Android platforms. 
                   We create user-friendly apps that are optimized for speed, security, and engagement, helping your business thrive on mobile.
                 </p>

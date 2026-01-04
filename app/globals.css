@@ -35,14 +35,32 @@
     scroll-behavior: auto;
   }
   body {
-    @apply bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 antialiased;
-    /* Disable GPU animations by default */
-    transform: translateZ(0);
+    @apply bg-white dark:bg-slate-950 text-slate-900 dark:text-white antialiased;
+    /* Optimize rendering performance */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  * {
+    /* Hardware acceleration for transforms only */
+    will-change: auto;
+  }
+  p {
+    @apply dark:text-white/90;
+  }
   ::selection {
     @apply bg-corporate-primary/10 text-corporate-primary;
+  }
+}
+
+@layer utilities {
+  .heading-gradient {
+    @apply bg-gradient-to-br from-white via-white to-white/70 bg-clip-text text-transparent;
+  }
+  .text-off-white {
+    @apply text-slate-200;
+  }
+  .hover-off-white {
+    @apply hover:text-slate-200 transition-colors;
   }
 }
 

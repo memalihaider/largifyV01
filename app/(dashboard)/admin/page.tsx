@@ -57,8 +57,8 @@ export default function AdminDashboard() {
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Admin Dashboard</h1>
-            <p className="text-slate-400">Cohort analytics and oversight</p>
+            <h1 className="text-4xl font-bold mb-2 heading-gradient">Admin Dashboard</h1>
+            <p className="text-white/80">Cohort analytics and oversight</p>
           </div>
           <Button className="bg-violet-600 hover:bg-violet-700">
             <Download className="w-4 h-4 mr-2" /> Generate Report

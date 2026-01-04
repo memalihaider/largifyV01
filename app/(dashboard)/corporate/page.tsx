@@ -35,8 +35,8 @@ export default function CorporateDashboard() {
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Corporate Partnership Hub</h1>
-            <p className="text-slate-400">Connect with innovative startups to solve business challenges</p>
+            <h1 className="text-4xl font-bold mb-2 heading-gradient">Corporate Partnership Hub</h1>
+            <p className="text-white/80">Connect with innovative startups to solve business challenges</p>
           </div>
           <Button className="bg-violet-600 hover:bg-violet-700">
             <Plus className="w-4 h-4 mr-2" /> Post Problem Statement

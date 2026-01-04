@@ -416,13 +416,10 @@ export default function ServicesPage() {
               <Badge className="mb-4 bg-white/10 text-white border-white/20">
                 Our Services
               </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-                Enterprise-Grade{' '}
-                <span className="bg-linear-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                  Technology Solutions
-                </span>
+              <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 tracking-tight heading-gradient">
+                Enterprise-Grade Technology Solutions
               </h1>
-              <p className="text-xl text-slate-400 mb-8">
+              <p className="text-xl text-white/80 mb-8">
                 Largify Solutions provides professional technology and security services 
                 for businesses, institutes, and governments. Our signature services are 
                 designed to transform operations, secure assets, and drive innovation.

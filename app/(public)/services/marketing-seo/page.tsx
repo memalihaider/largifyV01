@@ -126,10 +126,10 @@ export default function MarketingSEOPage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Digital Growth
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Digital Marketing & SEO
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Boost your online visibility and attract more customers with our SEO and digital marketing services. 
                   We improve your search engine rankings and create strategies to drive traffic and generate leads.
                 </p>

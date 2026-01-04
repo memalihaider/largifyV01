@@ -67,10 +67,10 @@ export default function SoftwareServicePage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Digital Engineering
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Software Solutions
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Build enterprise-grade digital products that scale. From web applications to AI-enabled systems, 
                   we deliver execution-focused solutions that drive real business value.
                 </p>

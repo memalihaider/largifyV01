@@ -27,11 +27,14 @@ import {
   Palette,
   Globe,
   Lock,
-  ArrowRight
+  ArrowRight,
+  Coins
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { COIN_COSTS } from '@/lib/coin-costs';
+import { InsufficientCoinsModal } from '@/components/ui/insufficient-coins-modal';
 
 interface Industry {
   id: string;
@@ -56,6 +59,12 @@ export default function TrainingPage() {
   const router = useRouter();
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'industries' | 'my-learning' | 'certifications'>('industries');
+  const [currentCoins] = useState(450); // Mock current coin balance
+  const [insufficientCoinsModal, setInsufficientCoinsModal] = useState({
+    isOpen: false,
+    requiredCoins: 0,
+    featureName: ''
+  });
 
   const industries: Industry[] = [
     {
@@ -167,6 +176,41 @@ export default function TrainingPage() {
     }
   ];
 
+  const getCoinCost = (level: 'Beginner' | 'Intermediate' | 'Advanced'): number => {
+    const costMap = {
+      Beginner: COIN_COSTS.courses.beginnerCourse,
+      Intermediate: COIN_COSTS.courses.intermediateCourse,
+      Advanced: COIN_COSTS.courses.advancedCourse
+    };
+    return costMap[level];
+  };
+
+  const handlePathClick = (path: LearningPath, e: React.MouseEvent) => {
+    e.preventDefault();
+    if (path.status === 'locked') {
+      const cost = getCoinCost(path.level);
+      setInsufficientCoinsModal({
+        isOpen: true,
+        requiredCoins: cost,
+        featureName: path.title
+      });
+      return;
+    }
+    
+    const cost = getCoinCost(path.level);
+    if (currentCoins < cost) {
+      setInsufficientCoinsModal({
+        isOpen: true,
+        requiredCoins: cost,
+        featureName: path.title
+      });
+      return;
+    }
+    
+    // In a real app, deduct coins here
+    router.push(`/student/training`);
+  };
+
   const trainingFeatures = [
     {
       icon: <BookOpen className="w-5 h-5" />,
@@ -206,8 +250,8 @@ export default function TrainingPage() {
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs font-bold text-[#a3e635] uppercase tracking-widest mb-2">Largify Training</p>
-            <h1 className="text-3xl font-bold text-white mb-2">AI-Enhanced LMS for Multi-Industry Skill Development</h1>
-            <p className="text-slate-400 text-lg max-w-2xl">
+            <h1 className="text-3xl font-bold mb-2 heading-gradient">AI-Enhanced LMS for Multi-Industry Skill Development</h1>
+            <p className="text-white/80 text-lg max-w-2xl">
               Learn → Practice → Assess → Prove. Not just watching videos, but building real capabilities.
             </p>
           </div>
@@ -400,53 +444,83 @@ export default function TrainingPage() {
           <div>
             <h2 className="text-xl font-bold text-white mb-4">Recommended Learning Paths</h2>
             <div className="space-y-3">
-              {featuredPaths.map((path, idx) => (
-                <motion.div
-                  key={path.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className={cn(
-                    "flex items-center justify-between p-4 bg-[#111927] border border-slate-800 rounded-lg transition-all",
-                    path.status === 'locked' ? 'opacity-60' : 'hover:border-slate-700 cursor-pointer'
-                  )}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={cn(
-                      "w-10 h-10 rounded-lg flex items-center justify-center",
-                      path.status === 'locked' ? 'bg-slate-800' : 'bg-[#a3e635]/20'
-                    )}>
-                      {path.status === 'locked' ? (
-                        <Lock className="w-5 h-5 text-slate-600" />
-                      ) : (
-                        <Play className="w-5 h-5 text-[#a3e635]" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">{path.title}</h3>
-                      <div className="flex items-center gap-3 text-xs text-slate-500">
-                        <span>{path.modules} modules</span>
-                        <span>•</span>
-                        <span>{path.duration}</span>
-                        <span>•</span>
-                        <span className={cn(
-                          "px-2 py-0.5 rounded",
-                          path.level === 'Beginner' && 'bg-green-500/20 text-green-400',
-                          path.level === 'Intermediate' && 'bg-yellow-500/20 text-yellow-400',
-                          path.level === 'Advanced' && 'bg-red-500/20 text-red-400'
-                        )}>
-                          {path.level}
-                        </span>
+              {featuredPaths.map((path, idx) => {
+                const cost = getCoinCost(path.level);
+                const canAccess = currentCoins >= cost && path.status !== 'locked';
+                return (
+                  <motion.div
+                    key={path.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    className={cn(
+                      "flex items-center justify-between p-4 bg-[#111927] border border-slate-800 rounded-lg transition-all",
+                      path.status === 'locked' ? 'opacity-60' : 'hover:border-slate-700 cursor-pointer'
+                    )}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={cn(
+                        "w-10 h-10 rounded-lg flex items-center justify-center",
+                        path.status === 'locked' || !canAccess ? 'bg-slate-800' : 'bg-[#a3e635]/20'
+                      )}>
+                        {path.status === 'locked' || !canAccess ? (
+                          <Lock className="w-5 h-5 text-slate-600" />
+                        ) : (
+                          <Play className="w-5 h-5 text-[#a3e635]" />
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-white">{path.title}</h3>
+                        <div className="flex items-center gap-3 text-xs text-slate-500">
+                          <span>{path.modules} modules</span>
+                          <span>•</span>
+                          <span>{path.duration}</span>
+                          <span>•</span>
+                          <span className={cn(
+                            "px-2 py-0.5 rounded",
+                            path.level === 'Beginner' && 'bg-green-500/20 text-green-400',
+                            path.level === 'Intermediate' && 'bg-yellow-500/20 text-yellow-400',
+                            path.level === 'Advanced' && 'bg-red-500/20 text-red-400'
+                          )}>
+                            {path.level}
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1 text-[#a3e635]">
+                            <Coins className="w-3 h-3" />
+                            {cost} coins
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {path.status !== 'locked' && (
-                    <Button size="sm" className="bg-slate-800 hover:bg-slate-700 text-white">
-                      Start Learning
-                    </Button>
-                  )}
-                </motion.div>
-              ))}
+                    <div className="flex items-center gap-3">
+                      <div className="text-right">
+                        {path.status === 'locked' && (
+                          <p className="text-xs text-slate-500">Locked</p>
+                        )}
+                        {!canAccess && path.status !== 'locked' && (
+                          <p className="text-xs text-red-400">Not Enough Coins</p>
+                        )}
+                        {canAccess && (
+                          <p className="text-xs text-green-400">Can Access</p>
+                        )}
+                      </div>
+                      <Button 
+                        onClick={(e) => handlePathClick(path, e)}
+                        size="sm" 
+                        className={cn(
+                          "text-white",
+                          canAccess 
+                            ? "bg-[#a3e635] hover:bg-[#bef264] text-black" 
+                            : "bg-slate-700 hover:bg-slate-600 cursor-not-allowed"
+                        )}
+                        disabled={!canAccess}
+                      >
+                        {path.status === 'locked' ? 'Locked' : canAccess ? 'Start Learning' : 'Buy Coins'}
+                      </Button>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -512,6 +586,16 @@ export default function TrainingPage() {
           </div>
         </div>
       )}
+
+      {/* Insufficient Coins Modal */}
+      <InsufficientCoinsModal
+        isOpen={insufficientCoinsModal.isOpen}
+        onClose={() => setInsufficientCoinsModal({ ...insufficientCoinsModal, isOpen: false })}
+        requiredCoins={insufficientCoinsModal.requiredCoins}
+        currentCoins={currentCoins}
+        featureName={insufficientCoinsModal.featureName}
+        coinsShortage={insufficientCoinsModal.requiredCoins - currentCoins}
+      />
     </div>
   );
 }

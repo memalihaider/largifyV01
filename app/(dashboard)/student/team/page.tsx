@@ -228,8 +228,8 @@ export default function TeamPage() {
                 <Users className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold">{teamInfo.name}</h1>
-                <p className="text-slate-400">Created {teamInfo.createdDate}</p>
+                <h1 className="text-4xl font-bold heading-gradient">{teamInfo.name}</h1>
+                <p className="text-white/80">Created {teamInfo.createdDate}</p>
               </div>
             </div>
           </div>

@@ -95,10 +95,10 @@ export default function WebDevelopmentPage() {
                 <Badge className="mb-4 bg-white/10 text-white border-white/20">
                   Web Engineering
                 </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 heading-gradient">
                   Web Development
                 </h1>
-                <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+                <p className="text-xl text-white/80 mb-8 leading-relaxed">
                   Build responsive, fast-loading websites that work seamlessly across all devices. 
                   We focus on delivering a great user experience, high security, and easy management to ensure long-term success.
                 </p>
